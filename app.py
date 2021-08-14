@@ -102,16 +102,22 @@ def update_date_graph (trend):
     
 ## Vizualisation     
 
-    periods_real = real_clothes_df.index
-    periods_pred = predicted_clothes_df.index
+    periods_realc = real_clothes_df.index
+    periods_predc = predicted_clothes_df.index
+    
+    periods_realm = real_makeup_df.index
+    periods_predm = predicted_makeup_df.index
+    
+    periods_reals = real_shoes_df.index
+    periods_preds = predicted_shoes_df.index
     fig = go.Figure(layout=go.Layout(height=400, width=1024))
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_real,
+    fig.add_trace(go.Scatter(x = periods_realc,
                              y = real_clothes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual clothes', line = {'color':'green', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_pred,
+    fig.add_trace(go.Scatter(x = periods_predc,
                              y = predicted_clothes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted clothes', 
@@ -119,12 +125,12 @@ def update_date_graph (trend):
 
 
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_real,
+    fig.add_trace(go.Scatter(x = periods_realm,
                              y = real_makeup_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual makeup', line = {'color':'blue', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_pred,
+    fig.add_trace(go.Scatter(x = periods_predm,
                              y = predicted_makeup_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted makeup', 
@@ -133,12 +139,12 @@ def update_date_graph (trend):
 
 
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_real,
+    fig.add_trace(go.Scatter(x = periods_reals,
                              y = real_shoes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual shoes', line = {'color':'yellow', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_pred,
+    fig.add_trace(go.Scatter(x = periods_preds,
                              y = predicted_shoes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted shoes', 
