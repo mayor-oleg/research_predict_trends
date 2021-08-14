@@ -102,22 +102,21 @@ def update_date_graph (trend):
     
 ## Vizualisation     
 
-    periods_realc = real_clothes_df.index
-    periods_predc = predicted_clothes_df.index
-    
-    periods_realm = real_makeup_df.index
-    periods_predm = predicted_makeup_df.index
-    
-    periods_reals = real_shoes_df.index
-    periods_preds = predicted_shoes_df.index
+    periods_real = real_clothes_df.index.tolist()
+    periods_pred = predicted_clothes_df.index.tolist()
+    for num in range(len(periods_real)):
+        periods_real[num] = periods_real[num].replace('Clothes Sales','Sales')
+    for num in range(len(periods_pred)):
+        periods_pred[num] = periods_pred[num].replace('Clothes Sales','Sales')
+        
     fig = go.Figure(layout=go.Layout(height=400, width=1024))
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_realc,
+    fig.add_trace(go.Scatter(x = periods_real,
                              y = real_clothes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual clothes', line = {'color':'green', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_predc,
+    fig.add_trace(go.Scatter(x = periods_pred,
                              y = predicted_clothes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted clothes', 
@@ -125,12 +124,12 @@ def update_date_graph (trend):
 
 
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_realm,
+    fig.add_trace(go.Scatter(x = periods_real,
                              y = real_makeup_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual makeup', line = {'color':'blue', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_predm,
+    fig.add_trace(go.Scatter(x = periods_pred,
                              y = predicted_makeup_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted makeup', 
@@ -139,17 +138,16 @@ def update_date_graph (trend):
 
 
 # real DATA    
-    fig.add_trace(go.Scatter(x = periods_reals,
+    fig.add_trace(go.Scatter(x = periods_real,
                              y = real_shoes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Actual shoes', line = {'color':'yellow', 'width':2}))
 # Predicted Data
-    fig.add_trace(go.Scatter(x = periods_preds,
+    fig.add_trace(go.Scatter(x = periods_pred,
                              y = predicted_shoes_df[trend].tolist(),
                              fill = None, mode = 'lines+markers',
                              name = 'Predicted shoes', 
                              line = dict(shape = 'linear', color = 'yellow', width= 2, dash = 'dash')))
-
     return fig
 
 if __name__ =="__main__":
